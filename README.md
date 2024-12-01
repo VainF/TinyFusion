@@ -22,7 +22,11 @@
 
 ## 0. Shallow Diffusion Transformers
 
-This work presents TinyFusion, a learnable depth pruning method for diffusion transformers, designed to optimize recoverability through a joint learning process of pruning decisions and weight updates. By focusing on creating shallow, efficient models, TinyFusion significantly reduces computational costs while maintaining strong performance across various architectures.
+This work presents TinyFusion, a learnable **depth pruning** method for diffusion transformers. We highlight two key findings:
+
+1) **Is calibration loss a reliable indicator?** Our experiments show that, pruned models with low calibration loss may not guarantee good post-finetuning performance.
+2) **Optimizing the recoverability.** The key idea of TinyFusion is to optimize the recoverability of pruned model, which ensures better performance after finetuning.
+
 
 <div align="center">
  <img src="assets/framework.png" alt="Scalability" style="display:block; margin-left:auto; margin-right:auto;">
