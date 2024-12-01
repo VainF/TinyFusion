@@ -18,6 +18,8 @@
 [National University of Singapore](https://nus.edu.sg/) 
 
 *†: Equal Contribution*
+
+📄 [[Arxiv]]()
 </div>
 
 ## 0. Shallow Diffusion Transformers
