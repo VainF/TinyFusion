@@ -128,8 +128,6 @@ python evaluator.py data/VIRTUAL_imagenet256_labeled.npz PATH_TO_YOUR.npz
 
 ## Key Results
 
-## Key Results
-
 <div align="center">
  <img src="assets/DiT.png" alt="Scalability" style="display:block; margin-left:auto; margin-right:auto;">
  <br>
