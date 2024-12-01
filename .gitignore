@@ -4,8 +4,7 @@ samples
 results*
 data
 *.pb
-sample.png
-sample*.png
+
 baseline_ckpt
 wandb
 pretrained
@@ -14,5 +13,3 @@ samples-*
 results-*
 outputs
 *.log
-*.png
-*.pdf
