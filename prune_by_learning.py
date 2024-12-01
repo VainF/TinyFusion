@@ -441,9 +441,22 @@ def main(args):
         print(f"[!] Final Decision: {decisions}")
         print(f"[!] Final Confidence: {conf}")
 
+        # Reload original checkpoint
+        model_without_ddp = model.module
+
+        initial_ckpt = torch.load(args.load_weight, map_location='cpu')
+        if 'ema' in initial_ckpt:
+            model_without_ddp.load_state_dict(initial_ckpt['ema'], strict=False)
+            print(f"Loaded initial EMA weights from {args.load_weight}")
+        elif 'model' in initial_ckpt:
+            model_without_ddp.load_state_dict(initial_ckpt['model'], strict=False)
+            print(f"Loaded initial weights from {args.load_weight}")
+        else:
+            model_without_ddp.load_state_dict(initial_ckpt, strict=False)
+            print(f"Loaded plain weights from {args.load_weight}")
+
         # Save pruned checkpoint: 
         new_blocks = []
-        model_without_ddp = model.module
         for i in range(len(model_without_ddp.blocks)):
             if i in decisions:
                 new_blocks.append(model_without_ddp.blocks[i])
