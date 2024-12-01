@@ -1,6 +1,33 @@
-# TinyDiT
+<div align="center">
 
-## Preparation
+<h1> TinyFusion </h1>
+
+<h3>TinyFusion: Diffusion Transformers Learned Shallow</h3>
+
+
+[Gongfan Fang](https://fangggf.github.io/), [Kunjun Li](https://kunjun-li.github.io/), [Xinyin Ma](https://horseee.github.io/), [Xinchao Wang](https://sites.google.com/site/sitexinchaowang/)  
+ 
+[National University of Singapore](https://nus.edu.sg/) 
+
+</div>
+
+## What is TinyFusion
+
+This work presents TinyFusion, a learnable depth pruning method for diffusion transformers, designed to optimize recoverability through a joint learning process of pruning decisions and weight updates. By focusing on creating shallow, efficient models, TinyFusion significantly reduces computational costs while maintaining strong performance across various architectures.
+
+<div align="center">
+<figure>
+ <img src="assets/framework.png" alt="Scalability" style="width:65%; display:block; margin-left:auto; margin-right:auto;"
+</figure>
+<figure>
+  <img src="assets/intro.png" alt="Scalability" style="width:30%; display:block; margin-left:auto; margin-right:auto;"
+</figure>
+</div>
+
+
+## Quick Start
+
+### Preparation
 
 #### Extract ImageNet Features to enable fast training
 ```bash
@@ -16,7 +43,7 @@ mkdir -p pretrained
 wget https://dl.fbaipublicfiles.com/DiT/models/DiT-XL-2-256x256.pt
 ```
 
-## Layer Pruning
+### Layer Pruning
 
 #### Pruning by Score
 ```bash
@@ -39,7 +66,7 @@ python prune_by_index.py --model DiT-XL/2 --ckpt pretrained/DiT-XL-2-256x256.pt 
 TODO
 
 
-## Training
+### Training
 
 ```bash
 # Finetune
