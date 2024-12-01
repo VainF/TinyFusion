@@ -91,10 +91,10 @@ To change the model, replace DiT_XL_1_2 in the command above with any of the opt
 python prune_by_score.py --model DiT-XL/2 --ckpt pretrained/DiT-XL-2-256x256.pt --save-model outputs/pruned/DiT-D14-by-Score.pt --n-pruned 14
 ```
 
-### Pruning with Oracle Scheme
+### Pruning with BK-SDM (Oracle) Scheme
 ```bash
-python prune_by_index.py --model DiT-XL/2 --ckpt pretrained/DiT-XL-2-256x256.pt --kept-indices "[0, 2, 4, 6, 8, 10, 12, 14, 16,
- 18, 20, 22, 24, 26]" --save-model outputs/pruned/DiT-D14-Uniform.pt
+python prune_by_index.py --model DiT-XL/2 --ckpt pretrained/DiT-XL-2-256x256.pt --kept-indices "[0, 2, 4, 6, 8, 10, 12, 14, 17,
+ 19, 21, 23, 25, 27]" --save-model outputs/pruned/DiT-D14-Uniform.pt
 ```
 
 ### Pruning by Indices
