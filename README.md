@@ -48,7 +48,7 @@ wget https://dl.fbaipublicfiles.com/DiT/models/DiT-XL-2-256x256.pt
 
 ### Learnable Pruning (Ours)
 
-The script prune_by_learning.py allows users to prune and derive shallow versions of specific models. The following command provides an e
+The script prune_by_learning.py allows users to prune and derive shallow versions of specific models. To learn a shallow DiT with 14 layers, we use the following script:
 
 ```bash
 torchrun --nnodes=1 --nproc_per_node=8 prune_by_learning.py \
