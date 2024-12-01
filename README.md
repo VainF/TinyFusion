@@ -13,10 +13,11 @@
 <h3>TinyFusion: Diffusion Transformers Learned Shallow</h3>
 
 
-[Gongfan Fang](https://fangggf.github.io/), [Kunjun Li](https://kunjun-li.github.io/), [Xinyin Ma](https://horseee.github.io/), [Xinchao Wang](https://sites.google.com/site/sitexinchaowang/)  
+[Gongfan Fang](https://fangggf.github.io/)†, [Kunjun Li](https://kunjun-li.github.io/)†, [Xinyin Ma](https://horseee.github.io/), [Xinchao Wang](https://sites.google.com/site/sitexinchaowang/)  
  
 [National University of Singapore](https://nus.edu.sg/) 
 
+*†: Equal Contribution*
 </div>
 
 ## 0. Shallow Diffusion Transformers
@@ -141,17 +142,16 @@ python evaluator.py data/VIRTUAL_imagenet256_labeled.npz PATH_TO_YOUR.npz
 ## 5. Key Results
 
 <div align="center">
- <img src="assets/DiT.png" alt="Scalability" style="display:block; margin-left:auto; margin-right:auto;">
+ <img src="assets/exp.png" alt="Scalability" style="display:block; margin-left:auto; margin-right:auto;">
  <br>
- <em>
- Layer pruning results for pre-trained DiT-XL/2. We focus on two settings: fast training with 100K optimization steps and sufficient fine-tuning with 500K steps. Both fine-tuning and Masked Knowledge Distillation are used for recovery.
- </em>
 </div>
 
 <div align="center">
- <img src="assets/Other.png" alt="Depth Pruning Results" style="display:block; margin-left:auto; margin-right:auto;">
+ <img src="assets/decisions.png" alt="Scalability" style="display:block; margin-left:auto; margin-right:auto; width:80%">
  <br>
- <em>
- Depth pruning results on Masked Autoregressive models (MARs) and Scalable Interpolant Transformers (SiTs).
- </em>
 </div>
+
+## 6. BibTeX
+  
+```bibtex
+```
