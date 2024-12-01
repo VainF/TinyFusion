@@ -65,13 +65,13 @@ torchrun --nnodes=1 --nproc_per_node=8 prune_by_learning.py \
 ```
 ##### Command Arguments
 
-- **`--model`**: Specifies the model to be pruned. Replace `DiT_XL_1_2` with your desired model configuration (see the **Available Models** section below).
+- `--model`: Specifies the model to be pruned. Replace `DiT_XL_1_2` with your desired model configuration (see the Available Models section below).
 
-- **`--data-path`**: Path to the encoded ImageNet.  
+- `--data-path`: Path to the encoded ImageNet.  
 
-- **`--delta-w`**: Enables weight udpate during pruning.
+- `--delta-w`: Allow weight udpates during decision optimization.
 
-- **`--lora`**: Uses LoRA (Low-Rank Adaptation) for weight updates. If not specified, full fine-tuning will be used.
+- `--lora`: Uses LoRA (Low-Rank Adaptation) for weight updates. If not specified, full fine-tuning will be used.
 
 ##### Available Models
 
@@ -116,4 +116,17 @@ torchrun --nnodes=1 --nproc_per_node=8 kd_fast.py --model DiT-D14/2 --load-weigh
 
 # RepKD
 torchrun --nnodes=1 --nproc_per_node=8 kd_rep_fast.py --model DiT-D14/2 --load-weight outputs/pruned/DiT-XL-D14-Learned.pt --data-path data/imagenet_encoded --epochs 100 --prefix D14-Learned-RepKD --teacher DiT-XL/2 --load-teacher pretrained/DiT-XL-2-256x256.pt
+```
+
+### Sampling
+
+```bash
+torchrun --nnodes=1 --nproc_per_node=8 sample_ddp.py --model DiT-D14/2 --ckpt outputs/D14-Learned-Finetuning/checkpoints/0500000.pt
+```
+
+### FID (Requires Tensorflow 2.0)
+
+Please refer to [https://github.com/openai/guided-diffusion/tree/main/evaluations](https://github.com/openai/guided-diffusion/tree/main/evaluations) for the ``VIRTUAL_imagenet256_labeled.npz``.
+```bash
+python evaluator.py data/VIRTUAL_imagenet256_labeled.npz PATH_TO_YOUR.npz
 ```
