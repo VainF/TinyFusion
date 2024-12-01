@@ -24,7 +24,7 @@
 This work presents TinyFusion, a learnable depth pruning method for diffusion transformers, designed to optimize recoverability through a joint learning process of pruning decisions and weight updates. By focusing on creating shallow, efficient models, TinyFusion significantly reduces computational costs while maintaining strong performance across various architectures.
 
 <div align="center">
- <img src="assets/framework.png" alt="Scalability" style="display:block; margin-left:auto; margin-right:auto;"
+ <img src="assets/framework.png" alt="Scalability" style="display:block; margin-left:auto; margin-right:auto;">
 </div>
 
 
@@ -48,6 +48,46 @@ wget https://dl.fbaipublicfiles.com/DiT/models/DiT-XL-2-256x256.pt
 
 ### Layer Pruning
 
+#### Learnable Pruning (Ours)
+
+The script prune_by_learning.py allows users to prune and derive shallow versions of specific models. The following command provides an e
+
+```bash
+torchrun --nnodes=1 --nproc_per_node=8 prune_by_learning.py \
+    --model DiT_XL_1_2 \
+    --load-weight pretrained/DiT-XL-2-256x256.pt \
+    --data-path data/imagenet_encoded \
+    --epochs 1 \
+    --prefix learn_mask \
+    --global-batch-size 128 \
+    --delta-w \
+    --lora
+```
+##### Command Arguments
+
+- **`--model`**: Specifies the model to be pruned. Replace `DiT_XL_1_2` with your desired model configuration (see the **Available Models** section below).
+
+- **`--data-path`**: Path to the encoded ImageNet.  
+
+- **`--delta-w`**: Enables weight udpate during pruning.
+
+- **`--lora`**: Uses LoRA (Low-Rank Adaptation) for weight updates. If not specified, full fine-tuning will be used.
+
+##### Available Models
+
+The script supports multiple models, each designed for specific pruning strategies. Below are the available options:
+
+```bash
+  DiT_XL_1_2,  # A model with 14 layers divided into blocks of size 2.
+  DiT_XL_2_4,  # A model with 14 layers retaining 4 layers from each block of size 2.
+  DiT_XL_7_14, # A deeper model with 7 layers derived from blocks of size 14.
+  DiT_XL_1_4,  # A 7-layer model with blocks of size 4.
+  DiT_D14_1_2, # Derived from TinyDiT-D14, pruning 1 out of 2 layers per block.
+  DiT_D14_2_4  # Derived from TinyDiT-D14, retaining 2 layers out of 4 in each block.
+```
+To change the model, replace DiT_XL_1_2 in the command above with any of the options listed here.
+
+
 #### Pruning by Score
 ```bash
 python prune_by_score.py --model DiT-XL/2 --ckpt pretrained/DiT-XL-2-256x256.pt --save-model outputs/pruned/DiT-D14-by-Score.pt --n-pruned 14
@@ -63,10 +103,6 @@ python prune_by_index.py --model DiT-XL/2 --ckpt pretrained/DiT-XL-2-256x256.pt 
 ```bash
 python prune_by_index.py --model DiT-XL/2 --ckpt pretrained/DiT-XL-2-256x256.pt --save-model outputs/pruned/DiT-D14-by-Score.pt --kept-indices "[0,2,4,6,8,10]"
 ```
-
-#### Learnable Pruning (Ours)
-
-TODO
 
 
 ### Training
