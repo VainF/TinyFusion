@@ -18,9 +18,11 @@
 [National University of Singapore](https://nus.edu.sg/) 
 
 *†: Equal Contribution*
+
+📄 [[Arxiv]]()
 </div>
 
-## 0. Shallow Diffusion Transformers
+## 0. Learn a Shallow Diffusion Transformers
 
 This work presents TinyFusion, a learnable **depth pruning** method for diffusion transformers. We highlight two key findings:
 
