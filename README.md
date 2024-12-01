@@ -28,27 +28,25 @@ This work presents TinyFusion, a learnable depth pruning method for diffusion tr
 </div>
 
 
-## Quick Start
+## Preparation
 
-### Preparation
-
-#### Extract ImageNet Features to enable fast training
+### Extract ImageNet Features to enable fast training
 ```bash
 torchrun --nnodes=1 --nproc_per_node=1 extract_features.py --model DiT-XL/2 --data-path data/imagenet/train --features-path data/imagenet_encoded
 ```
 
 All scripts end with `_fast` require the pre-extracted features.
 
-#### Download Pre-trained DiT-XL/2
+### Download Pre-trained DiT-XL/2
 
 ```bash
 mkdir -p pretrained
 wget https://dl.fbaipublicfiles.com/DiT/models/DiT-XL-2-256x256.pt
 ```
 
-### Layer Pruning
+## Layer Pruning
 
-#### Learnable Pruning (Ours)
+### Learnable Pruning (Ours)
 
 The script prune_by_learning.py allows users to prune and derive shallow versions of specific models. The following command provides an e
 
@@ -63,7 +61,7 @@ torchrun --nnodes=1 --nproc_per_node=8 prune_by_learning.py \
     --delta-w \
     --lora
 ```
-##### Command Arguments
+#### Command Arguments
 
 - `--model`: Specifies the model to be pruned. Replace `DiT_XL_1_2` with your desired model configuration (see the Available Models section below).
 
@@ -73,7 +71,7 @@ torchrun --nnodes=1 --nproc_per_node=8 prune_by_learning.py \
 
 - `--lora`: Uses LoRA (Low-Rank Adaptation) for weight updates. If not specified, full fine-tuning will be used.
 
-##### Available Models
+#### Available Models
 
 The script supports multiple models, each designed for specific pruning strategies. Below are the available options:
 
@@ -88,43 +86,40 @@ The script supports multiple models, each designed for specific pruning strategi
 To change the model, replace DiT_XL_1_2 in the command above with any of the options listed here.
 
 
-#### Pruning by Score
+### Pruning by Score
 ```bash
 python prune_by_score.py --model DiT-XL/2 --ckpt pretrained/DiT-XL-2-256x256.pt --save-model outputs/pruned/DiT-D14-by-Score.pt --n-pruned 14
 ```
 
-#### Pruning with Oracle Scheme
+### Pruning with Oracle Scheme
 ```bash
 python prune_by_index.py --model DiT-XL/2 --ckpt pretrained/DiT-XL-2-256x256.pt --kept-indices "[0, 2, 4, 6, 8, 10, 12, 14, 16,
  18, 20, 22, 24, 26]" --save-model outputs/pruned/DiT-D14-Uniform.pt
 ```
 
-#### Pruning by Indices
+### Pruning by Indices
 ```bash
 python prune_by_index.py --model DiT-XL/2 --ckpt pretrained/DiT-XL-2-256x256.pt --save-model outputs/pruned/DiT-D14-by-Score.pt --kept-indices "[0,2,4,6,8,10]"
 ```
 
 
-### Training
+## Training
 
 ```bash
-# Finetune
+# Regular Finetune
 torchrun --nnodes=1 --nproc_per_node=8 train_fast.py --model DiT-D14/2 --load-weight outputs/pruned/DiT-XL-D14-Learned.pt --data-path data/imagenet_encoded --epochs 100 --prefix D14-Learned-Finetuning 
 
-# KD
-torchrun --nnodes=1 --nproc_per_node=8 kd_fast.py --model DiT-D14/2 --load-weight outputs/pruned/DiT-XL-D14-Learned.pt --data-path data/imagenet_encoded --epochs 100 --prefix D14-Learned-KD --teacher DiT-XL/2 --load-teacher pretrained/DiT-XL-2-256x256.pt
-
-# RepKD
-torchrun --nnodes=1 --nproc_per_node=8 kd_rep_fast.py --model DiT-D14/2 --load-weight outputs/pruned/DiT-XL-D14-Learned.pt --data-path data/imagenet_encoded --epochs 100 --prefix D14-Learned-RepKD --teacher DiT-XL/2 --load-teacher pretrained/DiT-XL-2-256x256.pt
+# Masked KD
+torchrun --nnodes=1 --nproc_per_node=8 train_masked_kd.py --model DiT-D14/2 --load-weight outputs/pruned/DiT-XL-D14-Learned.pt --data-path data/imagenet_encoded --epochs 100 --prefix D14-Learned-RepKD --teacher DiT-XL/2 --load-teacher pretrained/DiT-XL-2-256x256.pt
 ```
 
-### Sampling
+## Sampling
 
 ```bash
 torchrun --nnodes=1 --nproc_per_node=8 sample_ddp.py --model DiT-D14/2 --ckpt outputs/D14-Learned-Finetuning/checkpoints/0500000.pt
 ```
 
-### FID (Requires Tensorflow 2.0)
+## FID (Requires Tensorflow 2.0)
 
 Please refer to [https://github.com/openai/guided-diffusion/tree/main/evaluations](https://github.com/openai/guided-diffusion/tree/main/evaluations) for the ``VIRTUAL_imagenet256_labeled.npz``.
 ```bash
