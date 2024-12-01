@@ -22,7 +22,7 @@
 📄 [[Arxiv]]()
 </div>
 
-## 0. Shallow Diffusion Transformers
+## 0. Learn a Shallow Diffusion Transformers
 
 This work presents TinyFusion, a learnable depth pruning method for diffusion transformers, designed to optimize recoverability through a joint learning process of pruning decisions and weight updates. By focusing on creating shallow, efficient models, TinyFusion significantly reduces computational costs while maintaining strong performance across various architectures.
 
