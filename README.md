@@ -125,3 +125,21 @@ Please refer to [https://github.com/openai/guided-diffusion/tree/main/evaluation
 ```bash
 python evaluator.py data/VIRTUAL_imagenet256_labeled.npz PATH_TO_YOUR.npz
 ```
+
+## Key Results
+
+<div align="center">
+ <img src="assets/DiT.png" alt="Scalability" style="display:block; margin-left:auto; margin-right:auto;"
+   <br>
+  <em>
+      Layer pruning results for pre-trained DiT-XL/2. We focus on two settings: fast training with 100K optimization steps and sufficient fine-tuning with 500K steps. Both fine-tuning and Masked Knowledge Distillation are used for recovery.
+  </em>
+</div>
+
+<div align="center">
+ <img src="assets/Other.png" alt="Scalability" style="display:block; margin-left:auto; margin-right:auto;"
+   <br>
+  <em>
+      Depth pruning results on Masked Autoregressive models (MARs) and Scalable Interpolant Transformers (SiTs).
+  </em>
+</div>
