@@ -51,7 +51,7 @@ wget https://dl.fbaipublicfiles.com/DiT/models/DiT-XL-2-256x256.pt
 The script prune_by_learning.py allows users to prune and derive shallow versions of specific models. To learn a shallow DiT with 14 layers, we use the following script:
 
 ```bash
-torchrun --nnodes=1 --nproc_per_node=1 --master_port=23242 prune_by_learning.py \
+torchrun --nnodes=1 --nproc_per_node=1 prune_by_learning.py \
   --model DiT-XL-1-2 \
   --load-weight pretrained/DiT-XL-2-256x256.pt \
   --data-path data/imagenet_encoded \
@@ -94,7 +94,7 @@ To change the model, replace DiT_XL_1_2 in the command above with any of the opt
 This script estimates the input and output similarity of each layer as the importance score. Please refer to [ShortGPT](https://arxiv.org/abs/2403.03853) for more details.
 
 ```bash
-python prune_by_score.py --model DiT-XL/2 --ckpt pretrained/DiT-XL-2-256x256.pt --save-model outputs/pruned/DiT-D14-by-Score.pt --n-pruned 14
+python prune_by_score.py --model DiT-XL/2 --ckpt pretrained/DiT-XL-2-256x256.pt --save-model outputs/pruned/DiT-D14-Score.pt --n-pruned 14
 ```
 
 ### Pruning with BK-SDM (Oracle) Scheme
@@ -114,14 +114,14 @@ python prune_by_index.py --model DiT-XL/2 --ckpt pretrained/DiT-XL-2-256x256.pt 
 
 ### Standard Finetuning
 ```bash
-torchrun --nnodes=1 --nproc_per_node=8 train_fast.py --model DiT-D14/2 --load-weight outputs/pruned/DiT-XL-D14-Learned.pt --data-path data/imagenet_encoded --epochs 100 --prefix D14-Learned-Finetuning 
+torchrun --nnodes=1 --nproc_per_node=8 train_fast.py --model DiT-D14/2 --load-weight outputs/pruned/DiT-D14-Learned.pt --data-path data/imagenet_encoded --epochs 100 --prefix D14-Learned-Finetuning 
 ```
 
 ### Masked KD
 Finetuning with the proposed Masked KD, which masks massive activations in the teacher's and student's hidden statets. Please see the paper for more details.
 ```bash
 # Masked KD
-torchrun --nnodes=1 --nproc_per_node=8 train_masked_kd.py --model DiT-D14/2 --load-weight outputs/pruned/DiT-XL-D14-Learned.pt --data-path data/imagenet_encoded --epochs 100 --prefix D14-Learned-RepKD --teacher DiT-XL/2 --load-teacher pretrained/DiT-XL-2-256x256.pt
+torchrun --nnodes=1 --nproc_per_node=8 train_masked_kd.py --model DiT-D14/2 --load-weight outputs/pruned/DiT-D14-Learned.pt --data-path data/imagenet_encoded --epochs 100 --prefix D14-Learned-RepKD --teacher DiT-XL/2 --load-teacher pretrained/DiT-XL-2-256x256.pt
 ```
 
 ## 4. Sampling for Evaluation
