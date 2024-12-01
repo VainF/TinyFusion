@@ -24,7 +24,7 @@
 
 ## 0. Learn a Shallow Diffusion Transformers
 
-This work presents TinyFusion, a learnable **depth pruning** method for diffusion transformers. We highlight two key findings:
+This work presents TinyFusion, a learnable **depth pruning** method for diffusion transformers. We highlight the following key findings:
 
 * 💡 **Is calibration loss a reliable indicator?** Our experiments show that, pruned models with low calibration loss may not guarantee good post-finetuning performance.
 * 🔑 **Optimizing the recoverability:** TinyFusion directly optimizes the recoverability of the pruned model, which ensures better performance after fine-tuning.
