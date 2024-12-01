@@ -19,7 +19,7 @@
 
 </div>
 
-## What is TinyFusion
+## 0. Shallow Diffusion Transformers
 
 This work presents TinyFusion, a learnable depth pruning method for diffusion transformers, designed to optimize recoverability through a joint learning process of pruning decisions and weight updates. By focusing on creating shallow, efficient models, TinyFusion significantly reduces computational costs while maintaining strong performance across various architectures.
 
@@ -51,7 +51,7 @@ wget https://dl.fbaipublicfiles.com/DiT/models/DiT-XL-2-256x256.pt
 The script prune_by_learning.py allows users to prune and derive shallow versions of specific models. To learn a shallow DiT with 14 layers, we use the following script:
 
 ```bash
-torchrun --nnodes=1 --nproc_per_node=1 prune_by_learning.py \
+torchrun --nnodes=1 --nproc_per_node=8 prune_by_learning.py \
   --model DiT-XL-1-2 \
   --load-weight pretrained/DiT-XL-2-256x256.pt \
   --data-path data/imagenet_encoded \
