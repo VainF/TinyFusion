@@ -26,9 +26,9 @@
 
 This work presents TinyFusion, a learnable **depth pruning** method for diffusion transformers. We highlight two key findings:
 
-1) **Is calibration loss a reliable indicator:** Our experiments show that, pruned models with low calibration loss may not guarantee good post-finetuning performance.
-2) **Optimizing the recoverability:** TinyFusion directly optimizes the recoverability of the pruned model, which ensures better performance after fine-tuning.
-3) **Training Efficiency:** The trainable parameters in TinyFusion is only **~0.9%** of the original model, making the training process highly efficient.
+* 💡 **Is calibration loss a reliable indicator?** Our experiments show that, pruned models with low calibration loss may not guarantee good post-finetuning performance.
+* 🔑 **Optimizing the recoverability:** TinyFusion directly optimizes the recoverability of the pruned model, which ensures better performance after fine-tuning.
+* ⚡ **Training Efficiency:** The trainable parameters in TinyFusion is only **~0.9%** of the original model, making the training process highly efficient.
 
 
 <div align="center">
