@@ -126,7 +126,7 @@ torchrun --nnodes=1 --nproc_per_node=8 train_fast.py --model DiT-D14/2 --load-we
 ```
 
 ### Masked KD
-Finetuning with the proposed Masked KD, which masks massive activations in the teacher's and student's hidden statets. Distillation of hidden layers provides stronger supervision and could achieve better training efficiency. Please see the paper for more details.
+Finetuning with the proposed Masked KD, which masks massive activations in the teacher's and student's hidden statets. Distillation of hidden layers provides stronger supervision and could achieve better training results. Please see the paper for more details.
 ```bash
 # Masked KD
 torchrun --nnodes=1 --nproc_per_node=8 train_masked_kd.py --model DiT-D14/2 --load-weight outputs/pruned/DiT-D14-Learned.pt --data-path data/imagenet_encoded --epochs 100 --prefix D14-Learned-RepKD --teacher DiT-XL/2 --load-teacher pretrained/DiT-XL-2-256x256.pt
