@@ -29,6 +29,7 @@ This work presents TinyFusion, a learnable **depth pruning** method for diffusio
 * 💡 **Is calibration loss a reliable indicator?** Our experiments show that, pruned models with low calibration loss may not guarantee good post-finetuning performance.
 * 🔑 **Optimizing the recoverability:** TinyFusion directly optimizes the recoverability of the pruned model, which ensures better performance after fine-tuning.
 * ⚡ **Training Efficiency:** The trainable parameters in TinyFusion is only **~0.9%** of the original model, making the training process highly efficient.
+* 📚 **Masked KD for Enchanced Recovery:**  A specialized Masked Knowledge Distillation excludes extreme activations in DiTs during knowledge transfer, significantly improving performance compared to standard fine-tuning.
 
 
 <div align="center">
@@ -126,7 +127,7 @@ torchrun --nnodes=1 --nproc_per_node=8 train_fast.py --model DiT-D14/2 --load-we
 ```
 
 ### Masked KD
-Finetuning with the proposed Masked KD, which masks massive activations in the teacher's and student's hidden statets. Distillation of hidden layers provides stronger supervision and could achieve better training results. Please see the paper for more details.
+Finetuning with the proposed Masked KD, which masks massive activations in the teacher's and student's hidden statets. Please see the paper for more details.
 ```bash
 # Masked KD
 torchrun --nnodes=1 --nproc_per_node=8 train_masked_kd.py --model DiT-D14/2 --load-weight outputs/pruned/DiT-D14-Learned.pt --data-path data/imagenet_encoded --epochs 100 --prefix D14-Learned-RepKD --teacher DiT-XL/2 --load-teacher pretrained/DiT-XL-2-256x256.pt
