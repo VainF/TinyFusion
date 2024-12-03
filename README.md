@@ -108,12 +108,12 @@ torchrun --nnodes=1 --nproc_per_node=8 prune_by_learning.py \
 The script supports multiple models, each designed for specific pruning strategies. Below are the available options:
 
 ```bash
-  DiT_XL_1_2,  # A model with 14 layers divided into blocks of size 2.
-  DiT_XL_2_4,  # A model with 14 layers retaining 4 layers from each block of size 2.
-  DiT_XL_7_14, # A deeper model with 7 layers derived from blocks of size 14.
-  DiT_XL_1_4,  # A 7-layer model with blocks of size 4.
-  DiT_D14_1_2, # Derived from TinyDiT-D14, pruning 1 out of 2 layers per block.
-  DiT_D14_2_4  # Derived from TinyDiT-D14, retaining 2 layers out of 4 in each block.
+  DiT_XL_1_2,  # XL with 1:2 pruning => D14
+  DiT_XL_2_4,  # XL with 2:4 pruning => D14
+  DiT_XL_7_14, # XL with 7:14 pruning => D14
+  DiT_XL_1_4,  # XL with 1:4 pruning => D7
+  DiT_D14_1_2, # D14 with 1:2 pruning => D7
+  DiT_D14_2_4  # D14 with 2:4 pruning => D7
 ```
 To change the model, replace DiT_XL_1_2 in the command above with any of the options listed here.
 
