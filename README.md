@@ -36,8 +36,20 @@ This work presents TinyFusion, a learnable **depth pruning** method for diffusio
  <img src="assets/framework.png" alt="Scalability" style="display:block; margin-left:auto; margin-right:auto;">
 </div>
 
+## 1. Quick Start with Pre-trained Models
 
-## 1. Preparation
+### Download pre-trained TinyDiT-D14 with 14 layers
+```bash
+mkdir -p pretrained && cd pretrained
+wget https://github.com/VainF/TinyFusion/releases/download/v1.0.0/TinyDiT-D14-MaskedKD-500K.pt
+```
+
+### Sampling with pre-trained models
+```bash
+python sample.py --model DiT-D14/2 --ckpt pretrained/TinyDiT-D14-MaskedKD-500K.pt --seed 4396
+```
+
+## 2. Preparation
 
 ### Extract ImageNet Features to enable fast training
 ```bash
@@ -53,7 +65,7 @@ mkdir -p pretrained && cd pretrained
 wget https://dl.fbaipublicfiles.com/DiT/models/DiT-XL-2-256x256.pt
 ```
 
-## 2. Layer Pruning
+## 3. Layer Pruning
 
 ### Learnable Pruning (Ours)
 
@@ -119,7 +131,7 @@ To prune a model with predefined indices, use the following command:
 python prune_by_index.py --model DiT-XL/2 --ckpt pretrained/DiT-XL-2-256x256.pt --save-model outputs/pruned/DiT-D14-by-Score.pt --kept-indices "[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]"
 ```
 
-## 3. Fine-tuning
+## 4. Fine-tuning
 
 ### Standard Finetuning
 ```bash
@@ -133,7 +145,7 @@ Finetuning with the proposed Masked KD, which masks massive activations in the t
 torchrun --nnodes=1 --nproc_per_node=8 train_masked_kd.py --model DiT-D14/2 --load-weight outputs/pruned/DiT-D14-Learned.pt --data-path data/imagenet_encoded --epochs 100 --prefix D14-Learned-RepKD --teacher DiT-XL/2 --load-teacher pretrained/DiT-XL-2-256x256.pt
 ```
 
-## 4. Sampling for Evaluation
+## 5. Sampling for Evaluation
 
 ### DDP Sampling
 ```bash
@@ -147,7 +159,7 @@ Please refer to [https://github.com/openai/guided-diffusion/tree/main/evaluation
 python evaluator.py data/VIRTUAL_imagenet256_labeled.npz PATH_TO_YOUR.npz
 ```
 
-## 5. Key Results
+## 6. Key Results
 
 <div align="center">
  <img src="assets/exp.png" alt="Scalability" style="display:block; margin-left:auto; margin-right:auto;">
@@ -159,7 +171,7 @@ python evaluator.py data/VIRTUAL_imagenet256_labeled.npz PATH_TO_YOUR.npz
  <br>
 </div>
 
-## 6. BibTeX
+## 7. BibTeX
   
 ```bibtex
 ```
