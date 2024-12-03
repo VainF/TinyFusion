@@ -19,7 +19,7 @@
 
 *†: Equal Contribution*
 
-📄 [[Arxiv]]()
+📄 [[Arxiv]](https://arxiv.org/abs/2412.01199)
 </div>
 
 ## 0. Learn a Shallow Diffusion Transformers
