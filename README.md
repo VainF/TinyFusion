@@ -46,7 +46,7 @@ wget https://github.com/VainF/TinyFusion/releases/download/v1.0.0/TinyDiT-D14-Ma
 
 ### Sampling with pre-trained models
 ```bash
-python sample.py --model DiT-D14/2 --ckpt pretrained/TinyDiT-D14-MaskedKD-500K.pt --seed 4396
+python sample.py --model DiT-D14/2 --ckpt pretrained/TinyDiT-D14-MaskedKD-500K.pt --seed 1
 ```
 
 ## 2. Preparation
