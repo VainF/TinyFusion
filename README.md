@@ -38,6 +38,11 @@ This work presents TinyFusion, a learnable **depth pruning** method for diffusio
 
 ## 1. Quick Start with Pre-trained Models
 
+### Requirements
+```bash
+pip install -r requirements.txt
+```
+
 ### Download pre-trained TinyDiT-D14 with 14 layers
 ```bash
 mkdir -p pretrained && cd pretrained
