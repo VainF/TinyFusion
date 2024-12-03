@@ -145,6 +145,12 @@ Finetuning with the proposed Masked KD, which masks massive activations in the t
 torchrun --nnodes=1 --nproc_per_node=8 train_masked_kd.py --model DiT-D14/2 --load-weight outputs/pruned/DiT-D14-Learned.pt --data-path data/imagenet_encoded --epochs 100 --prefix D14-Learned-RepKD --teacher DiT-XL/2 --load-teacher pretrained/DiT-XL-2-256x256.pt
 ```
 
+<div align="center">
+<img width="70%" alt="image" src="https://github.com/user-attachments/assets/9ac58395-4641-45fd-b08f-a5f9a9c311ae">
+</div>
+
+
+
 ## 5. Sampling for Evaluation
 
 ### DDP Sampling
