@@ -28,7 +28,7 @@ This work presents TinyFusion, a learnable **depth pruning** method for diffusio
 
 * 💡 **Is calibration loss a reliable indicator?** Our experiments show that, pruned models with low calibration loss may not guarantee good post-finetuning performance.
 * 🔑 **Optimizing the recoverability:** TinyFusion directly optimizes the recoverability of the pruned model, which ensures better performance after fine-tuning.
-* ⚡ **Training Efficiency:** The trainable parameters in TinyFusion is only **~0.9%** of the original model, making the training process highly efficient.
+* ⚡ **Training Efficiency:** The trainable parameters in TinyFusion is only **~0.9%** of the original model, making the pruning process highly efficient.
 * 📚 **Masked KD for Enchanced Recovery:**  A specialized Masked Knowledge Distillation excludes extreme activations in DiTs during knowledge transfer, significantly improving performance compared to standard fine-tuning.
 
 
@@ -46,8 +46,11 @@ wget https://github.com/VainF/TinyFusion/releases/download/v1.0.0/TinyDiT-D14-Ma
 
 ### Sampling with pre-trained models
 ```bash
-python sample.py --model DiT-D14/2 --ckpt pretrained/TinyDiT-D14-MaskedKD-500K.pt --seed 4396
+python sample.py --model DiT-D14/2 --ckpt pretrained/TinyDiT-D14-MaskedKD-500K.pt --seed 5464
 ```
+<div align="center">
+<img width="50%" alt="image" src="https://github.com/user-attachments/assets/b458f666-91de-404d-9c49-36a08a358732">
+</div>
 
 ## 2. Preparation
 
@@ -145,6 +148,12 @@ Finetuning with the proposed Masked KD, which masks massive activations in the t
 torchrun --nnodes=1 --nproc_per_node=8 train_masked_kd.py --model DiT-D14/2 --load-weight outputs/pruned/DiT-D14-Learned.pt --data-path data/imagenet_encoded --epochs 100 --prefix D14-Learned-RepKD --teacher DiT-XL/2 --load-teacher pretrained/DiT-XL-2-256x256.pt
 ```
 
+<div align="center">
+<img width="70%" alt="image" src="https://github.com/user-attachments/assets/9ac58395-4641-45fd-b08f-a5f9a9c311ae">
+</div>
+
+
+
 ## 5. Sampling for Evaluation
 
 ### DDP Sampling
@@ -174,4 +183,10 @@ python evaluator.py data/VIRTUAL_imagenet256_labeled.npz PATH_TO_YOUR.npz
 ## 7. BibTeX
   
 ```bibtex
+@article{fang2024tinyfusion,
+  title={TinyFusion: Diffusion Transformers Learned Shallow},
+  author={Fang, Gongfan and Li, Kunjun and Ma, Xinyin and Wang, Xinchao},
+  journal={arXiv preprint arXiv:2412.01199},
+  year={2024}
+}
 ```
