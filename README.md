@@ -128,7 +128,7 @@ python prune_by_score.py --model DiT-XL/2 --ckpt pretrained/DiT-XL-2-256x256.pt 
 
 ### Pruning with BK-SDM (Oracle) Scheme
 
-BK-SDM keeps the first layers in each "encoder block" and the last layer in each "decoder block". For DiT, we treat the first 14 layers as the encoder and the last 14 layers as the decoder, and group every 2 layers as a block. The oracle pruning can be performed with:
+[BK-SDM](https://github.com/Nota-NetsPresso/BK-SDM) keeps the first layers in each "encoder block" and the last layer in each "decoder block". For DiT, we treat the first 14 layers as the encoder and the last 14 layers as the decoder, and group every 2 layers as a block. The oracle pruning can be performed with:
 ```bash
 python prune_by_index.py --model DiT-XL/2 --ckpt pretrained/DiT-XL-2-256x256.pt --kept-indices "[0, 2, 4, 6, 8, 10, 12, 14, 17, 19, 21, 23, 25, 27]" --save-model outputs/pruned/DiT-D14-Oracle.pt
 ```
@@ -181,9 +181,15 @@ python evaluator.py data/VIRTUAL_imagenet256_labeled.npz PATH_TO_YOUR.npz
 </div>
 
 <div align="center">
- <img src="assets/decisions.png" alt="Scalability" style="display:block; margin-left:auto; margin-right:auto; width:80%">
+ <img src="assets/decisions.png" alt="Scalability" style="display:block; margin-left:auto; margin-right:auto; width:70%">
  <br>
 </div>
+
+<div align="center">
+ <img src="https://github.com/user-attachments/assets/f52bbc33-0ea3-4233-806f-89523798232c" alt="Scalability" style="display:block; margin-left:auto; margin-right:auto; width:70%">
+ <br>
+</div>
+
 
 ## 7. BibTeX
   
