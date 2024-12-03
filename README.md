@@ -46,8 +46,11 @@ wget https://github.com/VainF/TinyFusion/releases/download/v1.0.0/TinyDiT-D14-Ma
 
 ### Sampling with pre-trained models
 ```bash
-python sample.py --model DiT-D14/2 --ckpt pretrained/TinyDiT-D14-MaskedKD-500K.pt --seed 1
+python sample.py --model DiT-D14/2 --ckpt pretrained/TinyDiT-D14-MaskedKD-500K.pt --seed 5464
 ```
+<div align="center">
+<img width="50%" alt="image" src="https://github.com/user-attachments/assets/b458f666-91de-404d-9c49-36a08a358732">
+</div>
 
 ## 2. Preparation
 
@@ -180,4 +183,10 @@ python evaluator.py data/VIRTUAL_imagenet256_labeled.npz PATH_TO_YOUR.npz
 ## 7. BibTeX
   
 ```bibtex
+@article{fang2024tinyfusion,
+  title={TinyFusion: Diffusion Transformers Learned Shallow},
+  author={Fang, Gongfan and Li, Kunjun and Ma, Xinyin and Wang, Xinchao},
+  journal={arXiv preprint arXiv:2412.01199},
+  year={2024}
+}
 ```
