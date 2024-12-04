@@ -190,7 +190,7 @@ python evaluator.py data/VIRTUAL_imagenet256_labeled.npz PATH_TO_YOUR.npz
 </div>
 
 
-### 🚀 Is calibration loss a reliable indicator
+### 🚀 Is calibration loss a reliable indicator?
 <div align="center">
  <img src="https://github.com/user-attachments/assets/f52bbc33-0ea3-4233-806f-89523798232c" alt="Scalability" style="display:block; margin-left:auto; margin-right:auto; width:70%">
  <br>
