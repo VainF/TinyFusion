@@ -64,8 +64,6 @@ python sample.py --model DiT-D14/2 --ckpt pretrained/TinyDiT-D14-MaskedKD-500K.p
 torchrun --nnodes=1 --nproc_per_node=1 extract_features.py --model DiT-XL/2 --data-path data/imagenet/train --features-path data/imagenet_encoded
 ```
 
-All scripts end with `_fast` require the pre-extracted features.
-
 ### Download Pre-trained DiT-XL/2
 
 ```bash
@@ -108,12 +106,12 @@ torchrun --nnodes=1 --nproc_per_node=8 prune_by_learning.py \
 The script supports multiple models, each designed for specific pruning strategies. Below are the available options:
 
 ```bash
-  DiT_XL_1_2,  # A model with 14 layers divided into blocks of size 2.
-  DiT_XL_2_4,  # A model with 14 layers retaining 4 layers from each block of size 2.
-  DiT_XL_7_14, # A deeper model with 7 layers derived from blocks of size 14.
-  DiT_XL_1_4,  # A 7-layer model with blocks of size 4.
-  DiT_D14_1_2, # Derived from TinyDiT-D14, pruning 1 out of 2 layers per block.
-  DiT_D14_2_4  # Derived from TinyDiT-D14, retaining 2 layers out of 4 in each block.
+  DiT_XL_1_2,  # XL with 1:2 pruning => D14
+  DiT_XL_2_4,  # XL with 2:4 pruning => D14
+  DiT_XL_7_14, # XL with 7:14 pruning => D14
+  DiT_XL_1_4,  # XL with 1:4 pruning => D7
+  DiT_D14_1_2, # D14 with 1:2 pruning => D7
+  DiT_D14_2_4  # D14 with 2:4 pruning => D7
 ```
 To change the model, replace DiT_XL_1_2 in the command above with any of the options listed here.
 
@@ -128,7 +126,7 @@ python prune_by_score.py --model DiT-XL/2 --ckpt pretrained/DiT-XL-2-256x256.pt 
 
 ### Pruning with BK-SDM (Oracle) Scheme
 
-BK-SDM keeps the first layers in each "encoder block" and the last layer in each "decoder block". For DiT, we treat the first 14 layers as the encoder and the last 14 layers as the decoder, and group every 2 layers as a block. The oracle pruning can be performed with:
+[BK-SDM](https://github.com/Nota-NetsPresso/BK-SDM) keeps the first layers in each "encoder block" and the last layer in each "decoder block". For DiT, we treat the first 14 layers as the encoder and the last 14 layers as the decoder, and group every 2 layers as a block. The oracle pruning can be performed with:
 ```bash
 python prune_by_index.py --model DiT-XL/2 --ckpt pretrained/DiT-XL-2-256x256.pt --kept-indices "[0, 2, 4, 6, 8, 10, 12, 14, 17, 19, 21, 23, 25, 27]" --save-model outputs/pruned/DiT-D14-Oracle.pt
 ```
@@ -181,9 +179,15 @@ python evaluator.py data/VIRTUAL_imagenet256_labeled.npz PATH_TO_YOUR.npz
 </div>
 
 <div align="center">
- <img src="assets/decisions.png" alt="Scalability" style="display:block; margin-left:auto; margin-right:auto; width:80%">
+ <img src="assets/decisions.png" alt="Scalability" style="display:block; margin-left:auto; margin-right:auto; width:70%">
  <br>
 </div>
+
+<div align="center">
+ <img src="https://github.com/user-attachments/assets/f52bbc33-0ea3-4233-806f-89523798232c" alt="Scalability" style="display:block; margin-left:auto; margin-right:auto; width:70%">
+ <br>
+</div>
+
 
 ## 7. BibTeX
   
