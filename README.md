@@ -64,8 +64,6 @@ python sample.py --model DiT-D14/2 --ckpt pretrained/TinyDiT-D14-MaskedKD-500K.p
 torchrun --nnodes=1 --nproc_per_node=1 extract_features.py --model DiT-XL/2 --data-path data/imagenet/train --features-path data/imagenet_encoded
 ```
 
-All scripts end with `_fast` require the pre-extracted features.
-
 ### Download Pre-trained DiT-XL/2
 
 ```bash
