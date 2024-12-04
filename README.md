@@ -176,26 +176,34 @@ python evaluator.py data/VIRTUAL_imagenet256_labeled.npz PATH_TO_YOUR.npz
 
 ## 6. Key Results
 
+### 🚀 Results on DiT
 <div align="center">
  <img src="assets/exp.png" alt="Scalability" style="display:block; margin-left:auto; margin-right:auto;">
  <br>
 </div>
 
+
+### 🚀 The dynamics of decisions during pruning
 <div align="center">
  <img src="assets/decisions.png" alt="Scalability" style="display:block; margin-left:auto; margin-right:auto; width:70%">
  <br>
 </div>
 
+
+### 🚀 Is calibration loss a reliable indicator
 <div align="center">
  <img src="https://github.com/user-attachments/assets/f52bbc33-0ea3-4233-806f-89523798232c" alt="Scalability" style="display:block; margin-left:auto; margin-right:auto; width:70%">
  <br>
 </div>
+
+### 🚀 Different Pruning strategies
 
 <div align="center">
  <img src="assets/Block.png" alt="Scalability" style="display:block; margin-left:auto; margin-right:auto; width:70%">
  <br>
 </div>
 
+### 🚀 MARs and SiTs
 We also extend our method to other models, and the results suggest TinyFusion exhibits strong generalization across diverse diffusion transformer achitectures.
 
 <div align="center">
