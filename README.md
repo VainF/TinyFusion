@@ -203,6 +203,13 @@ We show that, incorporating the recoverability estimation can bring performance 
  <br>
 </div>
 
+### 🚀 The extreme activations in DiTs
+Masked KD removes extreme activations in DiTs for better and more stable knowledge transfer.
+<div align="center">
+<img src="assets/Other.png" alt="Scalability" style="display:block; margin-left:eauto; margin-right:auto; width:70%">
+ <br>
+</div>
+
 ### 🚀 MARs and SiTs
 We also extend our method to other models like [MARs](https://github.com/LTH14/mar) and [SiTs](https://github.com/willisma/SiT), and the results suggest TinyFusion exhibits strong generalization across diverse diffusion transformer achitectures.
 
