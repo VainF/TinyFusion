@@ -29,7 +29,7 @@ This work presents TinyFusion, a learnable **depth pruning** method for diffusio
 * 💡 **Is calibration loss a reliable indicator?** Our [experiments](https://github.com/VainF/TinyFusion?tab=readme-ov-file#-is-calibration-loss-a-reliable-indicator) show that, pruned models with low calibration loss may not guarantee good post-finetuning performance.
 * 🔑 **Optimizing the recoverability:** TinyFusion directly optimizes the recoverability of the pruned model, which ensures better performance after fine-tuning.
 * ⚡ **Training Efficiency:** The trainable parameters in TinyFusion is only **~0.9%** of the original model, making the pruning process highly efficient.
-* 📚 **Masked KD for Enchanced Recovery:**  For recovery, we propose [Masked Knowledge Distillation](https://github.com/VainF/TinyFusion?tab=readme-ov-file#masked-kd) that excludes extreme activations in DiTs during knowledge transfer, which significantly improves performance compared to standard fine-tuning.
+* 📚 **Masked KD for Enchanced Recovery:**  For recovery, we propose [Masked Knowledge Distillation](https://github.com/VainF/TinyFusion?tab=readme-ov-file#masked-kd) that excludes [extreme activations](https://arxiv.org/abs/2402.17762) in DiTs during knowledge transfer, which significantly improves performance compared to standard fine-tuning.
 
 
 <div align="center">
