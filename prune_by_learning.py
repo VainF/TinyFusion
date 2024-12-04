@@ -460,9 +460,15 @@ def main(args):
         for i in range(len(model_without_ddp.blocks)):
             if i in decisions:
                 new_blocks.append(model_without_ddp.blocks[i])
-        model.blocks = torch.nn.ModuleList(new_blocks)
+        model_without_ddp.blocks = torch.nn.ModuleList(new_blocks)
         os.makedirs(os.path.dirname(args.save_model), exist_ok=True)
-        torch.save(model_without_ddp.state_dict(), args.save_model)
+        state_dict = model_without_ddp.state_dict()
+        clean_state_dict = {}
+        for k, v in state_dict.items():
+            if 'gumbel_gates' in k or 'lora' in k:
+                continue
+            clean_state_dict[k] = v
+        torch.save(clean_state_dict, args.save_model)
         print(f"Saved pruned model to {checkpoint_dir}/pruned.pt")
         print(f"Remaining parameters: {sum(p.numel() for p in model_without_ddp.parameters())}")
         print(f"Number of Remaining layers: {len(model_without_ddp.blocks)}")
