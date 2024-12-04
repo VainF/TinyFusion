@@ -204,15 +204,20 @@ We show that, incorporating the recoverability estimation can bring performance 
 </div>
 
 ### 🚀 MARs and SiTs
-We also extend our method to other models, and the results suggest TinyFusion exhibits strong generalization across diverse diffusion transformer achitectures.
+We also extend our method to other models like [MARs](https://github.com/LTH14/mar) and [SiTs](https://github.com/willisma/SiT), and the results suggest TinyFusion exhibits strong generalization across diverse diffusion transformer achitectures.
 
 <div align="center">
  <img src="assets/Other.png" alt="Scalability" style="display:block; margin-left:auto; margin-right:auto; width:70%">
  <br>
 </div>
 
+## 7. Acknowledgments
 
-## 7. BibTeX
+This project is built on [facebookresearch/DiT](https://github.com/facebookresearch/DiT). We also use [NVlabs/MaskLLM](https://github.com/NVlabs/MaskLLM?tab=readme-ov-file) for Gumbel softmax, [openai/guided-diffusion](https://github.com/openai/guided-diffusion) for evaluation.
+
+
+
+## 8. BibTeX
   
 ```bibtex
 @article{fang2024tinyfusion,
