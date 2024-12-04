@@ -43,7 +43,7 @@ This work presents TinyFusion, a learnable **depth pruning** method for diffusio
 pip install -r requirements.txt
 ```
 
-### Download pre-trained TinyDiT-D14 with 14 layers
+### Download [pre-trained TinyDiT-D14](https://github.com/VainF/TinyFusion/releases/download/v1.0.0/TinyDiT-D14-MaskedKD-500K.pt) with 14 layers
 ```bash
 mkdir -p pretrained && cd pretrained
 wget https://github.com/VainF/TinyFusion/releases/download/v1.0.0/TinyDiT-D14-MaskedKD-500K.pt
