@@ -103,7 +103,7 @@ torchrun --nnodes=1 --nproc_per_node=8 prune_by_learning.py \
 
 #### Available Models
 
-The script supports multiple models, each designed for specific pruning strategies. Below are the available options:
+The script supports multiple models, each designed for specific pruning strategies. Below are the pre-defined options:
 
 ```bash
   DiT_XL_1_2,  # XL with 1:2 pruning => D14
@@ -113,8 +113,11 @@ The script supports multiple models, each designed for specific pruning strategi
   DiT_D14_1_2, # D14 with 1:2 pruning => D7
   DiT_D14_2_4  # D14 with 2:4 pruning => D7
 ```
-To change the model, replace DiT_XL_1_2 in the command above with any of the options listed here.
-
+You can also customize your pruning patterns using the ``group`` arguments. The following example crafts hybrid patterns with 2:4 and 3:4 pruning, yielding a 16-layer model.
+```bash
+def DiT_XL_customized(**kwargs):
+    return DiT(depth=28, hidden_size=1152, patch_size=2, num_heads=16, groups=[ [2,4], [2,4], [3,4], [2,4], [3,4], [2, 4], [2, 4], **kwargs)
+```
 
 ### Pruning by BI Score (ShortGPT)
 
