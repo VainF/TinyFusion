@@ -196,8 +196,7 @@ python evaluator.py data/VIRTUAL_imagenet256_labeled.npz PATH_TO_YOUR.npz
  <br>
 </div>
 
-We also extend our method to other models, and the results suggest TinyFusion exhibits strong generalization across diverse diffusion transformer
-chitectures.
+We also extend our method to other models, and the results suggest TinyFusion exhibits strong generalization across diverse diffusion transformer achitectures.
 
 <div align="center">
  <img src="assets/Other.png" alt="Scalability" style="display:block; margin-left:auto; margin-right:auto; width:70%">
