@@ -196,8 +196,8 @@ python evaluator.py data/VIRTUAL_imagenet256_labeled.npz PATH_TO_YOUR.npz
  <br>
 </div>
 
-### 🚀 Different Pruning strategies
-
+### 🚀 Different pruning strategies and patterns
+We show that, incorporating the recoverability estimation can bring performance benefits to downstream finetuning.
 <div align="center">
  <img src="assets/Block.png" alt="Scalability" style="display:block; margin-left:auto; margin-right:auto; width:70%">
  <br>
