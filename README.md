@@ -113,7 +113,7 @@ The script supports multiple models, each designed for specific pruning strategi
   DiT_D14_1_2, # D14 with 1:2 pruning => D7
   DiT_D14_2_4  # D14 with 2:4 pruning => D7
 ```
-You can also customize your pruning patterns using the ``group`` arguments. The following example crafts hybrid patterns with 2:4 and 3:4 pruning, yielding a 16-layer model.
+You can also customize your pruning patterns using the ``[group](https://github.com/VainF/TinyFusion/blob/21f56f3408a31d6b7ebf5c5e83ed4dea7a4b529f/models_with_layer_pruning.py#L161)`` arguments. The following example crafts hybrid patterns with 2:4 and 3:4 pruning, yielding a 16-layer model.
 ```bash
 def DiT_XL_customized(**kwargs):
     return DiT(depth=28, hidden_size=1152, patch_size=2, num_heads=16, groups=[ [2,4], [2,4], [3,4], [2,4], [3,4], [2, 4], [2, 4], **kwargs)
