@@ -206,7 +206,7 @@ We show that, incorporating the recoverability estimation can bring performance 
 ### 🚀 The extreme activations in DiTs
 Masked KD removes extreme activations in DiTs for better and more stable knowledge transfer.
 <div align="center">
-<img src="assets/Other.png" alt="Scalability" style="display:block; margin-left:eauto; margin-right:auto; width:70%">
+<img src="https://github.com/user-attachments/assets/d5c95aee-905d-47c0-8f13-daed394f71da" alt="Scalability" style="display:block; margin-left:eauto; margin-right:auto; width:70%">
  <br>
 </div>
 
