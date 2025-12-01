@@ -174,6 +174,9 @@ Please refer to [https://github.com/openai/guided-diffusion/tree/main/evaluation
 python evaluator.py data/VIRTUAL_imagenet256_labeled.npz PATH_TO_YOUR.npz
 ```
 
+Note: it's also possible to create the PATH_TO_YOUR.npz from an image folder with ``python save_npz.py --image_dir YOUR_IMAGE_FOLDER``
+
+
 ## 6. Key Results
 
 ### 🚀 Results on DiT
